@@ -6,8 +6,9 @@ Automatically whitelist Cloudflare IPs with UFW and get an easier way to delete 
 - Give execution permissions to `ufw-cf.sh`
 - Execute the script with sudo/root
 
-    chmod +x ufw-cf.sh
-    sudo ./ufw-cf.sh
+        chmod +x ufw-cf.sh
+        sudo ./ufw-cf.sh
+
 
 The script will download 2 temporal files (_cfip-v4.tmp_ and _cfips-v6.tmp_) into the `/tmp` folder, will add all of them to UFW.
 
