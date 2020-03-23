@@ -53,6 +53,21 @@ cf_ufw_purge () {
     done
 }
 
+for arg in "$@"; do
+    case "$arg" in
+        '--purge') cfufw_purge=1 ;;
+        '-p') cfufw_purge=1 ;;
+        '--no-new') cfufw_nonew=1 ;;
+        '-n') cfufw_nonew=1 ;;
+        '--help') cfufw_showhelp=1 ;;
+        '-h') cfufw_showhelp=1 ;;
+    esac
+done
+
+if [ $cfufw_purge -eq 1 ]; then
+    cf_ufw_purge
+fi
+
 touch /tmp/cloudflare-ips.tmp
 wget https://www.cloudflare.com/ips-v4 -O ->> /tmp/cloudflare-ips.tmp
 wget https://www.cloudflare.com/ips-v6 -O ->> /tmp/cloudflare-ips.tmp
