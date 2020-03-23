@@ -68,15 +68,17 @@ if [ $cfufw_purge -eq 1 ]; then
     cf_ufw_purge
 fi
 
-[ -e /tmp/cloudflare-ips.txt ] && rm /tmp/cloudflare-ips.txt
-touch /tmp/cloudflare-ips.txt
+if [ $cfufw_nonew -eq 0 ]; then
+        [ -e /tmp/cloudflare-ips.txt ] && rm /tmp/cloudflare-ips.txt
+        touch /tmp/cloudflare-ips.txt
 
-wget https://www.cloudflare.com/ips-v4 -q -O ->> /tmp/cloudflare-ips.txt
-wget https://www.cloudflare.com/ips-v6 -q -O ->> /tmp/cloudflare-ips.txt
+        wget https://www.cloudflare.com/ips-v4 -q -O ->> /tmp/cloudflare-ips.txt
+        wget https://www.cloudflare.com/ips-v6 -q -O ->> /tmp/cloudflare-ips.txt
 
-for cfip in `cat /tmp/cloudflare-ips.txt`; do
-        cf_ufw_add "$cfip"
-done
+        for cfip in `cat /tmp/cloudflare-ips.txt`; do
+                cf_ufw_add "${cfip}"
+        done
+fi
 
 [ -e /tmp/cloudflare-ips.txt ] && rm /tmp/cloudflare-ips.txt
 
