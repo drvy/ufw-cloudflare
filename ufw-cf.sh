@@ -54,8 +54,8 @@ cf_ufw_purge () {
 }
 
 touch /tmp/cloudflare-ips.tmp
-wget https://www.cloudflare.com/ips-v4 -a /tmp/cloudflare-ips.tmp
-wget https://www.cloudflare.com/ips-v6 -a /tmp/cloudflare-ips.tmp
+wget https://www.cloudflare.com/ips-v4 -O ->> /tmp/cloudflare-ips.tmp
+wget https://www.cloudflare.com/ips-v6 -O ->> /tmp/cloudflare-ips.tmp
 
 for cfip in `cat cloudflare-ips.tmp`; do
         cf_ufw_add "$cfip"
