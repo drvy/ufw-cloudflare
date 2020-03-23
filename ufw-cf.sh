@@ -64,6 +64,20 @@ for arg in "$@"; do
     esac
 done
 
+if [ $cfufw_showhelp -eq 1 ]; then
+    echo 'ufw-cf.sh 2.0 (https://github.com/drvy/ufw-cloudflare)'
+    echo 'Retrieve Cloudflare IPs and create allow rules in UFW (80 and 443 tcp) for each.'
+    echo 'Usage: ./ufw-cf.sh [options]'
+    echo 'OPTIONS:'
+    echo "\t--help (-h)  : This."
+    echo "\t--purge (-p) : Remove existing CF rules (Deletes rules with #cloudflare comment)."
+    echo "\t--no-new (-n): Does not download CF IPs and does not add any rule to UFW."
+    echo 'EXAMPLES:'
+    echo "\t./ufw-cf.sh --purge"
+    echo "\t./ufw-cf.sh --purge --no-new"
+    exit
+fi
+
 if [ $cfufw_purge -eq 1 ]; then
     cf_ufw_purge
 fi
