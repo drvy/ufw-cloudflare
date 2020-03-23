@@ -76,10 +76,14 @@ if [ $cfufw_nonew -eq 0 ]; then
     wget https://www.cloudflare.com/ips-v6 -q -O ->> /tmp/cloudflare-ips.txt
 
     for cfip in `cat /tmp/cloudflare-ips.txt`; do
-            cf_ufw_add "${cfip}"
+        cf_ufw_add "${cfip}"
     done
 
     [ -e /tmp/cloudflare-ips.txt ] && rm /tmp/cloudflare-ips.txt
 fi
 
+echo ''
+echo "Total rules deleted: ${cfufw_deleted}"
+echo "Total rules created: ${cfufw_created}"
+echo "Total rules ignored: ${cfufw_ignored}"
 echo 'Done.'
