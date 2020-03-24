@@ -1,22 +1,36 @@
-# ufw-cloudflare
-Automatically whitelist Cloudflare IPs with UFW and get an easier way to delete old rules. A simple bash script that will fetch Cloudflare's IPs (IPV4 & IPV6) and will add them automatically to UFW (Uncomplicated FireWall) thus allowing Cloudflare TCP traffic to ports 80 (http) and 443 (ssl/https).
+# ufw-cloudflare `v2`
+
+    █▀▀ █▀▀   █░█ █▀▀ █░█░█
+    █▄▄ █▀░   █▄█ █▀░ ▀▄▀▄▀
+
+Automatically whitelist [Cloudflare](https://www.cloudflare.com/) IPs (subnets) within [UFW](https://wiki.ubuntu.com/UncomplicatedFirewall) and get an easier way to delete old rules. A _simple_ SH script that will fetch Cloudflare's IPs and subnets (IPV4 & IPV6) and will create rules for them automatically in UFW (Uncomplicated Firewall) thus allowing Cloudflare TCP traffic to port 80 (http) and 443 (ssl/https).
 
 ## Usage
-- Clone this repository
+- Clone this repository (`https://github.com/drvy/ufw-cloudflare`)
 - Give execution permissions to `ufw-cf.sh`
 - Execute the script with sudo/root
 
         chmod +x ufw-cf.sh
         sudo ./ufw-cf.sh
 
+The script will download a temporal file (`cloudflare-ips.txt`) into the `/tmp` folder and will parse it to add the IPs to UFW.
 
-The script will download 2 temporal files (_cfip-v4.tmp_ and _cfips-v6.tmp_) into the `/tmp` folder, will add all of them to UFW.
+The IPs are provided by Cloudflare: [IPv4](https://www.cloudflare.com/ips-v4), [IPv6](https://www.cloudflare.com/ips-v6).
 
-## Delete rules
-The script will also create a simple `.sh` to remove the rules added. By default it is created in `/tmp/ufw-remove-cloudflare.sh`. It is recommended to copy that script to a personal place since it will allow you to remove the UFW rules when you decide to update or stop using them. 
 
-    cp /tmp/ufw-remove-cloudflare.sh ~/ufw-remove-cloudflare.sh
-    chmod +x ufw-remove-cloudflare.sh
-    sudo ./ufw-remove-cloudflare.sh
-    
+## Purge/delete rules
+The script has the ability to purge all the previously created rules in UFW. Keep in mind it deletes only those rules commented as "_cloudflare_".
+
+    sudo ./ufw-cf.sh --purge
+
+This will delete existing cloudflare rules, fetch the IPs and create new rules. You can also delete/purge the rules without creating new ones.
+
+    sudo ./ufw-cf.sh --purge --no-new
+
+
 ![Usage example](https://i.imgur.com/MOKlQ1K.gif)
+
+
+
+## Old version
+This is a completly rewriten script. It is still fairly simple but you may not have the desire or time to review it thus, if you want something functional and very simple, go check out the v1 branch for the previous version.
