@@ -6,7 +6,7 @@
 Automatically whitelist [Cloudflare](https://www.cloudflare.com/) IPs (subnets) within [UFW](https://wiki.ubuntu.com/UncomplicatedFirewall) and get an easier way to delete old rules. A _simple_ SH script that will fetch Cloudflare's IPs and subnets (IPV4 & IPV6) and will create rules for them automatically in UFW (Uncomplicated Firewall) thus allowing Cloudflare TCP traffic to port 80 (http) and 443 (ssl/https).
 
 ## Usage
-- Clone this repository (`https://github.com/drvy/ufw-cloudflare`)
+- Clone this repository or download .sh file from [Releases](https://github.com/drvy/ufw-cloudflare/releases/)
 - Give execution permissions to `ufw-cf.sh`
 - Execute the script with sudo/root
 
