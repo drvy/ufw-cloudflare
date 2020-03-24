@@ -53,6 +53,10 @@ cf_ufw_purge () {
     done
 }
 
+echo '█▀▀ █▀▀   █░█ █▀▀ █░█░█'
+echo '█▄▄ █▀░   █▄█ █▀░ ▀▄▀▄▀'
+echo ''
+
 for arg in "$@"; do
     case "$arg" in
         '--purge') cfufw_purge=1 ;;
