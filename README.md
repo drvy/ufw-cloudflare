@@ -23,7 +23,7 @@ The script has the ability to purge all the previously created rules in UFW. Kee
 
     sudo ./ufw-cf.sh --purge
 
-This will delete existing cloudflare rules, fetch the IPs and create new rules. You can also delete/purge the rules without creating new ones.
+This will delete existing Cloudflare rules, fetch the IPs and create new rules. You can also delete/purge the rules without creating new ones.
 
     sudo ./ufw-cf.sh --purge --no-new
 
@@ -33,4 +33,4 @@ This will delete existing cloudflare rules, fetch the IPs and create new rules. 
 ![Usage example](https://i.imgur.com/cmcCyOB.gif)
 
 ## Old version
-This is a completly rewriten script. It is still fairly simple but you may not have the desire or time to review it thus, if you want something functional and very simple, go check out the [old_v1 branch](https://github.com/drvy/ufw-cloudflare/tree/old_v1) for the previous version.
+This is a completely rewritten script. It is still fairly simple but you may not have the desire or time to review it thus, if you want something functional and very simple, go check out the [old_v1 branch](https://github.com/drvy/ufw-cloudflare/tree/old_v1) for the previous version.
