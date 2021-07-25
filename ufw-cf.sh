@@ -38,7 +38,7 @@ cf_ufw_del () {
 }
 
 cf_ufw_purge () {
-    total="$(sudo ufw status numbered | awk '/\# cloudflare$/ {++count} END {print count}')"
+    total="$(ufw status numbered | awk '/# cloudflare$/ {++count} END {print count}')"
     i=1
 
     if [ -z $total ]; then
@@ -47,7 +47,7 @@ cf_ufw_purge () {
     fi
 
     while [ $i -le $total ]; do
-        cfip=$(sudo ufw status numbered | awk '/\# cloudflare$/{print $6; exit}')
+        cfip=$(ufw status numbered | awk '/# cloudflare$/{print $6; exit}')
         cf_ufw_del $cfip
         i=$((i+1))
     done
