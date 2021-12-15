@@ -91,6 +91,7 @@ if [ $cfufw_nonew -eq 0 ]; then
     touch /tmp/cloudflare-ips.txt
 
     wget https://www.cloudflare.com/ips-v4 -q -O ->> /tmp/cloudflare-ips.txt
+    echo "" >> /tmp/cloudflare-ips.txt
     wget https://www.cloudflare.com/ips-v6 -q -O ->> /tmp/cloudflare-ips.txt
 
     for cfip in `cat /tmp/cloudflare-ips.txt`; do
